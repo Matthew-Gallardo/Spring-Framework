@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context.xsd">
+	<import resource="profile-context.xml"/>
+	<import resource="employee-context.xml"/>
+	<import resource="others-context.xml"/>
+	<!-- Inverse of Control -->
+	
+
+	<bean id="b1" class="org.acumen.training.codes.Basket">
+		<!-- Properties credentials -->
+		<property name="credentials">
+			<props>
+				<prop key="fullname"> Playboi Carti</prop>
+				<prop key="permit"> 1234567</prop>
+				<prop key="dateStarted"> 2010-10-10</prop>
+			</props>
+		</property>
+		<!--List<String> fruits -->
+		<property name="fruits">
+			<list>
+				<value>Mango</value>
+				<value>Apple</value>
+				<value>Lemon</value>
+			</list>
+		</property>
+		<!-- Map<String, Double> -->
+		<property name="inventory">
+			<map>
+				<entry key="Mango">
+					<value>50000.00</value>
+				</entry>
+				<entry key="Apple">
+					<value>30000.00</value>
+				</entry>
+				<entry key="Lemon">
+					<value>5000.00</value>
+				</entry>
+			</map>
+		</property>
+		<!-- String[] creditors -->
+		<property name="creditors">
+			<array>
+				<value>Kanye West</value>
+				<value>Kendrick Lamar</value>
+				<value>Baby Keem</value>
+			</array>
+		</property>
+	</bean>
+	
+	<!-- Market -->
+	<bean id="m1" class="org.acumen.training.codes.Market">
+		<!--List<Employee>employees -->
+		  <property name="employees">
+	        <list>
+	            <ref bean="e1"/>
+	            <ref bean="e2"/>
+	            <ref bean="e3"/>
+	        </list>
+   		 </property>
+		<!-- List<Profile>officers -->
+		<property name="officers">
+			<list>
+				<ref bean="p1" />
+				<ref bean="p2" />
+				<ref bean="p3" />
+				<bean class="org.acumen.training.codes.Profile" />
+			</list>
+		</property>
+		<!-- Profile[] profiles -->
+		<property name="profiles">
+			<array>
+				<bean class="org.acumen.training.codes.Profile" />
+				<bean class="org.acumen.training.codes.Profile" />
+				<bean class="org.acumen.training.codes.Profile" />
+			</array>
+		</property>
+		<!-- Map<Integer, Profile>schedule -->
+		<property name="schedule">
+			<map>
+				<entry key="1">
+					<ref bean="p1" />
+				</entry>
+				<entry key="2">
+					<ref bean="p1" />
+				</entry>
+				<entry key="3">
+					<ref bean="p1" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	
+</beans>

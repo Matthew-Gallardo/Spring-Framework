@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <bean id="p1" name="prof1, prof2, prof3" class="org.acumen.training.codes.Profile" 
+		init-method="createBean" destroy-method="destroyBean">
+		<property name="id">
+			<value>101</value>
+		</property> <!-- Dependency Injection (Method Injection) -->
+		<property name="firstname">
+			<value>Kai</value>
+		</property>
+		<property name="lastname">
+			<value>Sotto</value>
+		</property>
+		<property name="salary">
+			<value>100000.00</value>
+		</property>
+	</bean>
+	<bean id="p2" class="org.acumen.training.codes.Profile">
+		<property name="id" value="102" />
+		<property name="firstname" value="Frank" />
+		<property name="lastname" value="Ocean" />
+		<property name="salary" value="50000.00" />
+	</bean>
+	<bean id="p3" class="org.acumen.training.codes.Profile" />
+    </beans>
