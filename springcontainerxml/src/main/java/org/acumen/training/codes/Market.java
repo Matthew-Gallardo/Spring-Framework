@@ -21,6 +21,7 @@ public class Market {
 	public void setOfficers(List<Profile> officers) {
 		this.officers = officers;
 	}
+	
 	public Profile[] getProfiles() {
 		return profiles;
 	}
@@ -34,6 +35,10 @@ public class Market {
 		this.schedule = schedule;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Market [employees=" + employees + ", officers=" + officers + ", profiles=" + Arrays.toString(profiles)
+				+ ", schedule=" + schedule + "]";
+	}
 
 }

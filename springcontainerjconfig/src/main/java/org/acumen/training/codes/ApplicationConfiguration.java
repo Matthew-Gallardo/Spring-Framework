@@ -1,18 +1,33 @@
 package org.acumen.training.codes;
 
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
+import javax.sound.midi.Track;
+
 import org.acumen.training.codes.model.Basket;
+import org.acumen.training.codes.model.HelloWorld;
 import org.acumen.training.codes.model.Profile;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 @Configuration
+@Import(value = {ProfileConfiguration.class, BasketConfiguration.class, OthersConfiguration.class})
+@ComponentScan(basePackages = "org.acumen.training.codes") 
 public class ApplicationConfiguration {
 	
-	private Properties credentials () {
+	@Bean
+	public Properties credentials () {
 		Properties props = new Properties();
 		props.setProperty("fullname", "Kendrick Lamar");
 		props.setProperty("permit", "123412");
@@ -21,25 +36,29 @@ public class ApplicationConfiguration {
 	}
 	
 	@Bean
-	public Profile p1() {
-		return new Profile();
+	public Map<String, Double> inventory(){
+		Map<String, Double>inv = new HashMap<>();
+		inv.put("pencil", 100.00);
+		inv.put("paper", 231.1);
+		inv.put("paper", 352.1);
+		return inv;
+	}
+	
+	@Bean
+	public List<String> fruits(){
+		List<String>f  = new ArrayList<String>();
+		f.add("Mango");
+		f.add("Apple");
+		f.add("Lemon");
+		return f;
 	}
 	@Bean
-	public Profile p2(@Value("101")Integer id, @Value("Kanye")String firstname, @Value("West")String lastname, @Value("1000.00")Double salary) 
-	{
-		
-		Profile profile = new Profile();
-		profile.setId(id);
-		profile.setFirstname(firstname);
-		profile.setLastname(lastname);
-		profile.setSalary(salary);
-		return profile;
+	public List<String> configs(){
+		List<String>dbConf  = new ArrayList<String>();
+		return dbConf;
 	}
+	
 
-	@Bean
-	public Basket b1() {
-		
-		return new Basket();
-		
-	}
+
+
 }

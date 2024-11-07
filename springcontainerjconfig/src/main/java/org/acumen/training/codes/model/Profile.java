@@ -1,16 +1,19 @@
 package org.acumen.training.codes.model;
 
+import java.util.logging.Logger;
+
 import org.springframework.beans.factory.annotation.Value;
 
 public class Profile {
+	private static final Logger LOGGER = Logger.getLogger(Profile.class.getName());
 	
-	//@Value(value = "101")
+	@Value(value = "101")
 	private Integer id;
-	//@Value(value = "Kai")
+	@Value(value = "Kai")
 	private String firstname;
-	//@Value(value = "Sotto")
+	@Value(value = "Sotto")
 	private String lastname;
-	//@Value(value = "1000.00")
+	@Value(value = "1000.00")
 	private Double salary;
 	
 	
@@ -41,10 +44,16 @@ public class Profile {
 	
 	//Hook Methods
 	public void createBean() {
-		System.out.println("Creating Profile Object");
+		LOGGER.info("Create Profile Object");
 	}
 	
 	public void destroyBean() {
-		System.out.println("Destroying Profile Object");
+		LOGGER.info("Destroying Profile Object");
+		
 	}
+	@Override
+	public String toString() {
+		return "Profile [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", salary=" + salary + "]";
+	}
+	
 }

@@ -41,4 +41,9 @@ public class Profile {
 	public void destroyBean() {
 		System.out.println("Destroying Profile Object");
 	}
+	@Override
+	public String toString() {
+		return "Profile [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", salary=" + salary + "]";
+	}
+	
 }

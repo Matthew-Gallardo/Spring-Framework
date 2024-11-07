@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="org.acumen.training.codes.services" />
+    <context:property-placeholder location="classpath:/config/db.properties" />
+    
+    <!-- Users Bean -->
+    <bean id="user1" name="username1" class="org.acumen.training.codes.services.User" scope="prototype">
+        <property name="name">
+        	<value>Lebron</value>
+        </property>
+    </bean>
+    
+    <bean id="user2" name="username2" class="org.acumen.training.codes.services.User" scope="prototype">
+        <property name="name">
+        	<value>Curry</value>
+        </property>
+    </bean>
+    
+    <bean id="user3" name="username3" class="org.acumen.training.codes.services.User" scope="prototype">
+        <property name="name">
+        	<value>Durant</value>
+        </property>
+    </bean>
+    
+    <bean id="user4" name="username4" class="org.acumen.training.codes.services.User" scope="prototype">
+        <property name="name">
+        	<value>Carmelo</value>
+        </property>
+    </bean>
+
+    <!-- UserId beans -->
+    <bean id="userId" class="org.acumen.training.codes.services.UserId" scope="singleton">
+        <constructor-arg value="Anthony"/>
+        <constructor-arg value="101"/>
+    </bean>
+
+    <!-- UserDao beans -->
+    <bean id="userDao1" name="dao1" class="org.acumen.training.codes.services.UserDao" scope="singleton">
+        <constructor-arg>
+            <list>
+                <ref bean="user1"/>
+                <ref bean="user2"/>
+            </list>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="userDao2"  name="dao2" class="org.acumen.training.codes.services.UserDao" scope="singleton">
+        <constructor-arg>
+            <list>
+                <ref bean="user3"/>
+                <ref bean="user4"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+</beans>
