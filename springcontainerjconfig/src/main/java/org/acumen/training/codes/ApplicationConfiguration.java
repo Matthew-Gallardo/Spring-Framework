@@ -7,19 +7,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import javax.sound.midi.Track;
-
-import org.acumen.training.codes.model.Basket;
-import org.acumen.training.codes.model.HelloWorld;
-import org.acumen.training.codes.model.Profile;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 @Configuration
 @Import(value = {ProfileConfiguration.class, BasketConfiguration.class, OthersConfiguration.class})
@@ -57,6 +48,9 @@ public class ApplicationConfiguration {
 		List<String>dbConf  = new ArrayList<String>();
 		return dbConf;
 	}
+	
+	
+	
 	
 
 

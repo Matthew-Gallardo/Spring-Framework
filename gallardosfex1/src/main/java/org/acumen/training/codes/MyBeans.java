@@ -45,7 +45,7 @@ public class MyBeans {
         nameRecords.put("Drake", "Consultant");
         return new RecordData(ageList, nameRecords);
     }
-
+    
     @Bean
     public RecordData recordData4() {
         List<Integer> ageList = Arrays.asList(18, 27, 45);
