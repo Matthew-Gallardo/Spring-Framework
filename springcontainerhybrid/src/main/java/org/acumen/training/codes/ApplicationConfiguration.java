@@ -14,7 +14,8 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @ImportResource(locations = {"classpath:applicationContext.xml"})
 @ComponentScan("org.acumen.training.codes")
-@PropertySource(value = {"classpath:/properties/jdbc.properties"}, encoding = "utf=8")
+@PropertySource(value = {"classpath:/properties/jdbc.properties"}, encoding = "utf-8")
+
 public class ApplicationConfiguration {
 
 	@Bean

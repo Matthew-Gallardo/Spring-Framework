@@ -15,7 +15,8 @@ public class TestApplicationConfiguration {
 	
 	@Test
 	public void testAppConfiguration() {
-		
+		AnnotationConfigApplicationContext container =  
+				new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
 	
 		Employee employee = container.getBean("employee", Employee.class);
 		LOGGER.info("{}", employee);
