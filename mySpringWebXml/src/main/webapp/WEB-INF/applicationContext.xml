@@ -95,6 +95,18 @@
 			<value>/WEB-INF/jsp/calculator/calculator_result.jsp</value>
 		</property>
 	</bean>
+	<bean id="spendingForm"
+		class="org.springframework.web.servlet.view.JstlView">
+		<property name="url">
+			<value>/WEB-INF/jsp/spending/spending_form.jsp</value>
+		</property>
+	</bean>
+	<bean id="spendingResult"
+		class="org.springframework.web.servlet.view.JstlView">
+		<property name="url">
+			<value>/WEB-INF/jsp/spending/spending_result.jsp</value>
+		</property>
+	</bean>
 
 	<!-- Error form Handling -->
 	<bean id="messageSource"

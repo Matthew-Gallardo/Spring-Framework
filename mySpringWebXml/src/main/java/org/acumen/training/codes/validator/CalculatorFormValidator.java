@@ -1,6 +1,8 @@
 package org.acumen.training.codes.validator;
 
 import org.acumen.training.codes.model.form.CalculatorForm;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -11,6 +13,7 @@ public class CalculatorFormValidator implements Validator {
 
     private static final double MIN_VALUE = -1000000.00;
     private static final double MAX_VALUE = 1000000.00;
+    private static final Logger LOGGER = LogManager.getLogger(CalculatorFormValidator.class);
 
     @Override
     public boolean supports(Class<?> clazz) {
@@ -29,14 +32,18 @@ public class CalculatorFormValidator implements Validator {
        
         if (form.getOperand1() == null) {
             errors.rejectValue("operand1", "form.operand1.invalid", "Invalid number for Operand 1.");
+            LOGGER.info("Operand 1 invalid number");
         } else {
             validateOperand(form.getOperand1(), "operand1", errors);
+            LOGGER.info("Operand 1 validated");
         }
 
         if (form.getOperand2() == null) {
             errors.rejectValue("operand2", "form.operand2.invalid", "Invalid number for Operand 2.");
+            LOGGER.info("Operand 2 invalid number");
         } else {
             validateOperand(form.getOperand2(), "operand2", errors);
+            LOGGER.info("Operand 2 validated");
         }
 
         
