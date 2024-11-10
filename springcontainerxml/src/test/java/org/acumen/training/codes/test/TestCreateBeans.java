@@ -21,6 +21,7 @@ public class TestCreateBeans {
 			
 			Profile p1 = container.getBean("p1",Profile.class);
 			LOGGER.info("%s".formatted(p1.hashCode()));
+			
 	
 			p1=container.getBean("p1",Profile.class);
 			LOGGER.info("%s".formatted(p1.hashCode()));

@@ -83,7 +83,20 @@
 			<value>/WEB-INF/jsp/profile/profile_result.jsp</value>
 		</property>
 	</bean>
+	<bean id="calculatorForm"
+		class="org.springframework.web.servlet.view.JstlView">
+		<property name="url">
+			<value>/WEB-INF/jsp/calculator/calculator_form.jsp</value>
+		</property>
+	</bean>
+	<bean id="calculatorResult"
+		class="org.springframework.web.servlet.view.JstlView">
+		<property name="url">
+			<value>/WEB-INF/jsp/calculator/calculator_result.jsp</value>
+		</property>
+	</bean>
 
+	<!-- Error form Handling -->
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basenames">
