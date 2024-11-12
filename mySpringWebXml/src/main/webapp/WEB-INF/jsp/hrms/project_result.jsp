@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+    <c:url var="cssPath" value="/app1/css/list.css" />
+    <link rel="stylesheet" type="text/css" href="${cssPath}"/>
 <title>Project List</title>
 </head>
 <body>

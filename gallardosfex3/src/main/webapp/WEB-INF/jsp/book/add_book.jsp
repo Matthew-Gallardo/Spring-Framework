@@ -6,8 +6,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Add Book</title>
-    <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/add.css">
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/css/add.css">
+
 </head>
 <body>
 	<c:url var="submiturl" value="/app1/book/entry" />

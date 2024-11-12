@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +19,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
+@SessionAttributes("name")
 public class HelloWorldController {
 	
 	public static final Logger LOGGER = LogManager.getLogger(HelloWorldController.class);
@@ -25,15 +27,20 @@ public class HelloWorldController {
 	//handler request(returns String)
 	//action methods
 	//services
+	@ModelAttribute("name")
+	public String name() {
+		return "Hello Matt";
+	}
+	
 	@ResponseBody // text plain result
 	@RequestMapping(path = "/hello", method = RequestMethod.GET)
 	public String printhelloWorld() {
-		return "Bosssing Musta Buhay buhay";
+		return "Bosssing Musta Buhay buhay ";
 	}
 	@ResponseBody 
 	@RequestMapping(path = "/greet", method = RequestMethod.GET)
-	public String greet() {
-		return "Happy Lunch";
+	public String greet(@ModelAttribute("name") String name) {
+		return "Happy Lunch %s".formatted(name);
 	}
 	
 	//Request Parameters
@@ -84,7 +91,7 @@ public class HelloWorldController {
 	
 	//Views
 	@RequestMapping(path = "/welcome.html", method = RequestMethod.GET)
-	public String showWelcome() {
+	public String showWelcome(@ModelAttribute("welcomeMsg") String welcomeMsg) {
 		return "welcomex";
 	}	
 	

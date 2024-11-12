@@ -51,19 +51,12 @@ public class ProjectFormController {
 	    	throw new NullPointerException("Project Id cannot be empty");
 	    }
 
-
 	    if (projectForm.getProjectdate().isBefore(LocalDate.now())) {
 	        throw new IllegalArgumentException("Project date cannot be before today");
 	    }
-
-	    
 	    projectService.insertRecord(projectForm);
-
-	   
 	    List<Project> recs = projectService.retrieveAll();
 	    model.addAttribute("recs", recs);
-
-	   
 	    return "projectResult";
 	}
 

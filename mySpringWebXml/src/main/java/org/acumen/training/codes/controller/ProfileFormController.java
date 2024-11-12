@@ -28,7 +28,7 @@ import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/profile/form.html")
-@SessionAttributes(names = {"optColor"})
+//@SessionAttributes(names = {"optColor"})
 public class ProfileFormController {
 	
 	
@@ -51,7 +51,7 @@ public class ProfileFormController {
 		binder.setValidator(profileFormValidator);
 	}
 	
-	@ModelAttribute("optGender")
+	//@ModelAttribute (name = "optGender")
 	public Map<String, String> optGender()
 	{
 		Map<String, String> gender = new HashMap<>();	
@@ -60,7 +60,7 @@ public class ProfileFormController {
 		gender.put("other", "OTHER");
 		return gender;
 	}
-	@ModelAttribute("optColor")
+	//@ModelAttribute("optColor")
 	public Map<String, String> optColor(){
 		Map<String, String> color = new HashMap<>();	
 		color.put("red", "RED");

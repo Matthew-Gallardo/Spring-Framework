@@ -9,6 +9,7 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 import org.springframework.web.servlet.view.BeanNameViewResolver;
@@ -126,6 +127,13 @@ public class MySpringConfiguration implements WebMvcConfigurer {
 		resolver.setDefaultErrorView("errDefaultPage");
 		
 		return resolver;
+	}
+	
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/resources/css/**").addResourceLocations("/css/");
+		registry.addResourceHandler("/resources/js/**").addResourceLocations("/js/");
+		registry.addResourceHandler("/resources/image/**").addResourceLocations("/image/");
 	}
 	
 

@@ -4,13 +4,21 @@ import java.time.LocalDate;
 
 import org.springframework.stereotype.Component;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-@Component
+
+@Entity
+@Table(catalog = "hrms", name = "project")
 public class Project {
 	private Short id;
 	private String projname;
 	private LocalDate projdate;
 
+	@Id
+	@Column(name = "id" , nullable = false, unique = true)
 	public Short getId() {
 		return id;
 	}
@@ -18,7 +26,7 @@ public class Project {
 	public void setId(Short id) {
 		this.id = id;
 	}
-
+	@Column(name = "projname" , nullable = false, length = 200)
 	public String getProjname() {
 		return projname;
 	}
@@ -26,7 +34,7 @@ public class Project {
 	public void setProjname(String projname) {
 		this.projname = projname;
 	}
-
+	@Column(name = "projdate" , nullable = false)
 	public LocalDate getProjdate() {
 		return projdate;
 	}
