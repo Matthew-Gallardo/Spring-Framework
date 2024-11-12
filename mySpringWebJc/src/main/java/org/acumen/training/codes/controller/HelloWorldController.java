@@ -6,13 +6,13 @@ import java.io.PrintWriter;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -21,6 +21,9 @@ import jakarta.servlet.http.HttpServletResponse;
 public class HelloWorldController {
 	
 	public static final Logger LOGGER = LogManager.getLogger(HelloWorldController.class);
+	
+	@Autowired
+	private String title;
 
 	//handler request(returns String)
 	//action methods
@@ -28,7 +31,7 @@ public class HelloWorldController {
 	@ResponseBody // text plain result
 	@RequestMapping(path = "/hello", method = RequestMethod.GET)
 	public String printhelloWorld() {
-		return "Bosssing Musta Buhay buhay";
+		return "Bosssing Musta Buhay buhay %s".formatted(title);
 	}
 	@ResponseBody 
 	@RequestMapping(path = "/greet", method = RequestMethod.GET)

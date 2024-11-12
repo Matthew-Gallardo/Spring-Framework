@@ -14,10 +14,10 @@
     http://www.springframework.org/schema/mvc/spring-mvc.xsd
     http://www.springframework.org/schema/aop
     http://www.springframework.org/schema/aop/spring-aop.xsd">
-    
-    <import resource="jdbcContext.xml"/>
-    
-  
+
+	<import resource="jdbcContext.xml" />
+
+
 	<!-- Inverse of Control -->
 	<!-- Step 2: Idetify Stereotype Components -->
 	<context:component-scan
@@ -27,8 +27,6 @@
 	<!-- Step 3: Build the Mvc framework -->
 	<mvc:annotation-driven />
 	<mvc:default-servlet-handler />
-
-	<!-- View Resolver -->
 	<bean id="viewResolver1"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
@@ -66,67 +64,33 @@
 		</property>
 	</bean>
 
-	<bean id="loginForm"
+	<bean id="main"
 		class="org.springframework.web.servlet.view.JstlView">
 		<property name="url">
-			<value>/WEB-INF/jsp/login/login_form.jsp</value>
-		</property>
-	</bean>
-	<bean id="loginResult"
-		class="org.springframework.web.servlet.view.JstlView">
-		<property name="url">
-			<value>/WEB-INF/jsp/login/login_result.jsp</value>
-		</property>
-	</bean>
-	<bean id="profileForm"
-		class="org.springframework.web.servlet.view.JstlView">
-		<property name="url">
-			<value>/WEB-INF/jsp/profile/profile_form.jsp</value>
-		</property>
-	</bean>
-	<bean id="profileResult"
-		class="org.springframework.web.servlet.view.JstlView">
-		<property name="url">
-			<value>/WEB-INF/jsp/profile/profile_result.jsp</value>
-		</property>
-	</bean>
-	<bean id="calculatorForm"
-		class="org.springframework.web.servlet.view.JstlView">
-		<property name="url">
-			<value>/WEB-INF/jsp/calculator/calculator_form.jsp</value>
-		</property>
-	</bean>
-	<bean id="calculatorResult"
-		class="org.springframework.web.servlet.view.JstlView">
-		<property name="url">
-			<value>/WEB-INF/jsp/calculator/calculator_result.jsp</value>
-		</property>
-	</bean>
-	<bean id="spendingForm"
-		class="org.springframework.web.servlet.view.JstlView">
-		<property name="url">
-			<value>/WEB-INF/jsp/spending/spending_form.jsp</value>
-		</property>
-	</bean>
-	<bean id="spendingResult"
-		class="org.springframework.web.servlet.view.JstlView">
-		<property name="url">
-			<value>/WEB-INF/jsp/spending/spending_result.jsp</value>
+			<value>/WEB-INF/jsp/book/main.jsp</value>
 		</property>
 	</bean>
 	
-	<bean id="projectForm"
+	<bean id="add_book"
 		class="org.springframework.web.servlet.view.JstlView">
 		<property name="url">
-			<value>/WEB-INF/jsp/hrms/project_form.jsp</value>
+			<value>/WEB-INF/jsp/book/add_book.jsp</value>
 		</property>
 	</bean>
-	<bean id="projectResult"
+
+	<bean id="list_books"
 		class="org.springframework.web.servlet.view.JstlView">
 		<property name="url">
-			<value>/WEB-INF/jsp/hrms/project_result.jsp</value>
+			<value>/WEB-INF/jsp/book/list_books.jsp</value>
 		</property>
 	</bean>
+	<bean id="delete_book"
+		class="org.springframework.web.servlet.view.JstlView">
+		<property name="url">
+			<value>/WEB-INF/jsp/book/delete_book.jsp</value>
+		</property>
+	</bean>
+	
 	
 	<!-- Error View -->
 	<bean id="errorNullPointer"
@@ -135,24 +99,43 @@
 			<value>/WEB-INF/errors/errorNullPointer.jsp</value>
 		</property>
 	</bean>
+
 	<bean id="errorIllegalArgument"
 		class="org.springframework.web.servlet.view.JstlView">
 		<property name="url">
-			<value>/WEB-INF/errors/error_illegal_arg.jsp</value>
+			<value>/WEB-INF/errors/errorIllegalArgument.jsp</value>
 		</property>
 	</bean>
-	<bean id="errorInputMismatch"
+
+	<bean id="inputMismatch"
 		class="org.springframework.web.servlet.view.JstlView">
 		<property name="url">
-			<value>/WEB-INF/errors/error_input_mismatch.jsp</value>
+			<value>/WEB-INF/errors/errorInputMismatch.jsp</value>
 		</property>
 	</bean>
-	<bean id="errorGlobalNullPointer"
+	<bean id="typeMismatch"
 		class="org.springframework.web.servlet.view.JstlView">
 		<property name="url">
-			<value>/WEB-INF/errors/errorNullPointer.jsp</value>
+			<value>/WEB-INF/errors/errorTypeMismatch.jsp</value>
 		</property>
 	</bean>
+	<bean id="errorLimit"
+		class="org.springframework.web.servlet.view.JstlView">
+		<property name="url">
+			<value>/WEB-INF/errors/errorIsbnLimit.jsp</value>
+		</property>
+	</bean>
+	<bean id="errorGeneral"
+		class="org.springframework.web.servlet.view.JstlView">
+		<property name="url">
+			<value>/WEB-INF/errors/errorGeneral.jsp</value>
+		</property>
+	</bean>
+
+
+
+
+
 
 	<!-- Error form Handling -->
 	<bean id="messageSource"
@@ -164,40 +147,4 @@
 		</property>
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
-
-	<!-- Session Scope objects -->
-	<bean id="project1" class="org.acumen.training.codes.model.data.Project" scope="session" >
-		<aop:scoped-proxy/>
-	
-	</bean>
-	<!-- Request Scope objects -->
-	<bean id="project2" class="org.acumen.training.codes.model.data.Project" scope="request" >
-		<aop:scoped-proxy/>
-	</bean>
-	
-
-	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-    <!-- Exception to error views -->
-    <property name="exceptionMappings">
-        <props>
-            <prop key="java.lang.ArithmeticException">errArithmetic</prop>
-            <prop key="java.lang.ClassCastException">errClassCast</prop>
-        </props>
-    </property>
-
-    <!-- HTTP Status code to error view -->
-    <property name="statusCodes">
-        <props>
-            <prop key="err400">400</prop>
-            <prop key="err500">500</prop>
-            <prop key="err403">403</prop>
-        </props>
-    </property>
-
-    <!-- Default error view -->
-    <property name="defaultErrorView" value="errDefaultPage"/>
-</bean>
-	
-
-
 </beans>

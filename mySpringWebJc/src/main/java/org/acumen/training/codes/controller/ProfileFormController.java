@@ -7,11 +7,9 @@ import java.util.Map;
 import org.acumen.training.codes.editor.BirthdayEditor;
 import org.acumen.training.codes.editor.DoubleEditor;
 import org.acumen.training.codes.editor.IntegerEditor;
-import org.acumen.training.codes.model.data.Project;
 import org.acumen.training.codes.model.form.ProfileForm;
 import org.acumen.training.codes.validator.ProfileFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,27 +19,17 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import jakarta.enterprise.inject.build.compatible.spi.Validation;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/profile/form.html")
-@SessionAttributes(names = {"optColor"})
+@RequestMapping("profile/form1.html")
 public class ProfileFormController {
 	
 	
 	@Autowired
 	private ProfileFormValidator profileFormValidator;
-	
-	@Qualifier("project1")
-	@Autowired
-	private Project project1;
-	
-	@Qualifier("project2")
-	@Autowired
-	private Project project2;
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -94,8 +82,6 @@ public class ProfileFormController {
 			model.addAttribute("form1", form);
 			return"profileForm";
 		}
-		System.out.println(project1.hashCode());
-		System.out.println(project2.hashCode());
 		model.addAttribute("form", form);
 		
 		return"profileResult";
