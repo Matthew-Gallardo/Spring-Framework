@@ -1,12 +1,9 @@
 package org.acumen.training.codes.dao;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
 import org.acumen.training.codes.model.data.Project;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,6 +49,7 @@ public class ProjectDao {
 	public boolean insertProject(Project proj) {
 		try {
 			em.persist(proj);
+			
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();

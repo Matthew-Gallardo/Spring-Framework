@@ -20,6 +20,7 @@
 	<c:forEach var="f" items="${form.food}">
 		<p> <c:out value="${f}"/> </p>
 	</c:forEach>
+	<p> <c:out value="${emp}"/> </p>
 	
 	</p>
 

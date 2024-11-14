@@ -8,6 +8,7 @@ import org.acumen.training.codes.editor.BirthdayEditor;
 import org.acumen.training.codes.editor.DoubleEditor;
 import org.acumen.training.codes.editor.IntegerEditor;
 import org.acumen.training.codes.model.data.Project;
+import org.acumen.training.codes.model.form.Employee;
 import org.acumen.training.codes.model.form.ProfileForm;
 import org.acumen.training.codes.validator.ProfileFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,30 +29,31 @@ import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/profile/form.html")
-//@SessionAttributes(names = {"optColor"})
+@SessionAttributes(names = {"optGender"})
 public class ProfileFormController {
 	
 	
 	@Autowired
 	private ProfileFormValidator profileFormValidator;
 	
-	@Qualifier("project1")
 	@Autowired
-	private Project project1;
+	private Employee emp1;
 	
-	@Qualifier("project2")
-	@Autowired
-	private Project project2;
 	
-	@InitBinder
-	public void initBinder(WebDataBinder binder) {
+	@InitBinder("form1")
+	public void initBinder1(WebDataBinder binder) {
 		binder.registerCustomEditor(LocalDate.class, "birthday", new BirthdayEditor());
 		binder.registerCustomEditor(Integer.class, new IntegerEditor());
 		binder.registerCustomEditor(Double.class, new DoubleEditor());
 		binder.setValidator(profileFormValidator);
 	}
+	@InitBinder("optGender")
+	public void initBinder2(WebDataBinder binder) {
+		binder.setIgnoreInvalidFields(true);
+		binder.setIgnoreUnknownFields(true);
+	}
 	
-	//@ModelAttribute (name = "optGender")
+	@ModelAttribute ("optGender")
 	public Map<String, String> optGender()
 	{
 		Map<String, String> gender = new HashMap<>();	
@@ -60,7 +62,7 @@ public class ProfileFormController {
 		gender.put("other", "OTHER");
 		return gender;
 	}
-	//@ModelAttribute("optColor")
+	@ModelAttribute("optColor")
 	public Map<String, String> optColor(){
 		Map<String, String> color = new HashMap<>();	
 		color.put("red", "RED");
@@ -94,10 +96,9 @@ public class ProfileFormController {
 			model.addAttribute("form1", form);
 			return"profileForm";
 		}
-		System.out.println(project1.hashCode());
-		System.out.println(project2.hashCode());
+		System.out.println(emp1);
+		model.addAttribute("emp", emp1);
 		model.addAttribute("form", form);
-		
 		return"profileResult";
 	}
 
