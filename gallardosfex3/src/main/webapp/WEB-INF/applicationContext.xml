@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<import resource="jdbcContext.xml" />
+
+
+	<!-- Inverse of Control -->
+	<!-- Step 2: Idetify Stereotype Components -->
+	<context:component-scan
+		base-package="org.acumen.training.codes" />
+
+
+	<!-- Step 3: Build the Mvc framework -->
+	<mvc:annotation-driven />
+	<mvc:default-servlet-handler />
+	<bean id="viewResolver1"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/jsp/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+		<property name="order">
+			<value>2</value>
+		</property>
+	</bean>
+
+	<bean id="viewResolver2"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass">
+			<value>org.springframework.web.servlet.view.JstlView</value>
+		</property>
+		<property name="prefix">
+			<value>/WEB-INF/jsp/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+		<property name="order">
+			<value>1</value>
+		</property>
+	</bean>
+
+	<!-- BeanNameViewResolver -->
+	<bean id="viewResolver3"
+		class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order">
+			<value>0</value>
+		</property>
+	</bean>
+
+	<bean id="main"
+		class="org.springframework.web.servlet.view.JstlView">
+		<property name="url">
+			<value>/WEB-INF/jsp/book/main.jsp</value>
+		</property>
+	</bean>
+	
+	<bean id="add_book"
+		class="org.springframework.web.servlet.view.JstlView">
+		<property name="url">
+			<value>/WEB-INF/jsp/book/add_book.jsp</value>
+		</property>
+	</bean>
+
+	<bean id="list_books"
+		class="org.springframework.web.servlet.view.JstlView">
+		<property name="url">
+			<value>/WEB-INF/jsp/book/list_books.jsp</value>
+		</property>
+	</bean>
+	<bean id="delete_book"
+		class="org.springframework.web.servlet.view.JstlView">
+		<property name="url">
+			<value>/WEB-INF/jsp/book/delete_book.jsp</value>
+		</property>
+	</bean>
+	
+	
+	<!-- Error View -->
+	<bean id="errorNullPointer"
+		class="org.springframework.web.servlet.view.JstlView">
+		<property name="url">
+			<value>/WEB-INF/errors/errorNullPointer.jsp</value>
+		</property>
+	</bean>
+
+	<bean id="errorIllegalArgument"
+		class="org.springframework.web.servlet.view.JstlView">
+		<property name="url">
+			<value>/WEB-INF/errors/errorIllegalArgument.jsp</value>
+		</property>
+	</bean>
+
+	<bean id="inputMismatch"
+		class="org.springframework.web.servlet.view.JstlView">
+		<property name="url">
+			<value>/WEB-INF/errors/errorInputMismatch.jsp</value>
+		</property>
+	</bean>
+	<bean id="typeMismatch"
+		class="org.springframework.web.servlet.view.JstlView">
+		<property name="url">
+			<value>/WEB-INF/errors/errorTypeMismatch.jsp</value>
+		</property>
+	</bean>
+	<bean id="errorLimit"
+		class="org.springframework.web.servlet.view.JstlView">
+		<property name="url">
+			<value>/WEB-INF/errors/errorIsbnLimit.jsp</value>
+		</property>
+	</bean>
+	<bean id="errorGeneral"
+		class="org.springframework.web.servlet.view.JstlView">
+		<property name="url">
+			<value>/WEB-INF/errors/errorGeneral.jsp</value>
+		</property>
+	</bean>
+
+
+
+
+
+
+	<!-- Error form Handling -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>config.errors</value>
+			</list>
+		</property>
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+</beans>
